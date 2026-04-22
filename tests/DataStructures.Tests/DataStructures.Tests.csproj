@@ -22,4 +22,8 @@
       <ProjectReference Include="..\..\src\DataStructures\DataStructures.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="LinkedLists\" />
+    </ItemGroup>
+
 </Project>
