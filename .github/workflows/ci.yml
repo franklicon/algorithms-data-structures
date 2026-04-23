@@ -1,0 +1,26 @@
+name: Build and Test
+
+on:
+  push:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore AlgorithmsAndDataStructures.sln
+
+      - name: Build
+        run: dotnet build AlgorithmsAndDataStructures.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test AlgorithmsAndDataStructures.sln --configuration Release --no-build
