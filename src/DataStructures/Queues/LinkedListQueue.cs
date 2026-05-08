@@ -1,6 +1,6 @@
 namespace DataStructures.Queues;
 
-public class LinkedListQueue<T>
+public class LinkedListQueue<T> : IQueue<T>
 {
     private Node? _head;
     private Node? _tail;
@@ -30,7 +30,7 @@ public class LinkedListQueue<T>
     {
         if (IsEmpty)
         {
-            throw new InvalidOperationException("Queue is empty");
+            throw new InvalidOperationException("The queue is empty");
         }
 
         T value = _head!.Value;
@@ -49,7 +49,7 @@ public class LinkedListQueue<T>
     {
         if (IsEmpty)
         {
-            throw new InvalidOperationException("Queue is empty");
+            throw new InvalidOperationException("The queue is empty");
         }
 
         T value = _head!.Value;

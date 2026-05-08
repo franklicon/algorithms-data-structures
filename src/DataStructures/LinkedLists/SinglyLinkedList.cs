@@ -1,6 +1,6 @@
 namespace DataStructures.LinkedLists;
 
-public class SinglyLinkedList<T>
+public class SinglyLinkedList<T> : ILinkedList<T>
 {
     private Node? _head;
     private Node? _tail;
@@ -46,7 +46,7 @@ public class SinglyLinkedList<T>
 
         T value = _head!.Value;
         _head = _head.Next;
-        Count--;
+        Count--;    
 
         if (_head is null)
         {

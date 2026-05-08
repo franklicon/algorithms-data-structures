@@ -1,6 +1,6 @@
 namespace DataStructures.LinkedLists;
 
-public class DoublyLinkedList<T>
+public class DoublyLinkedList<T> : ILinkedList<T>
 {
     private Node? _head;
     private Node? _tail;
