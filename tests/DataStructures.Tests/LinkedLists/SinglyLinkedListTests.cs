@@ -14,6 +14,66 @@ public class SinglyLinkedListTests
     }
 
     [Fact]
+    public void AddFirst_OnEmptyList_ShouldIncreaseCountAndNotBeEmpty()
+    {
+        var list = new SinglyLinkedList<int>();
+
+        list.AddFirst(10);
+
+        Assert.False(list.IsEmpty);
+        Assert.Equal(1, list.Count);
+    }
+
+    [Fact]
+    public void AddFirst_OnNonEmptyList_ShouldIncreaseCount()
+    {
+        var list = new SinglyLinkedList<int>();
+        list.AddFirst(10);
+
+        list.AddFirst(20);
+
+        Assert.False(list.IsEmpty);
+        Assert.Equal(2, list.Count);
+    }
+
+    [Fact]
+    public void AddLast_OnEmptyList_ShouldIncreaseCountAndNotBeEmpty()
+    {
+        var list = new SinglyLinkedList<int>();
+
+        list.AddLast(10);
+
+        Assert.False(list.IsEmpty);
+        Assert.Equal(1, list.Count);
+    }
+
+    [Fact]
+    public void AddLast_OnNonEmptyList_ShouldIncreaseCount()
+    {
+        var list = new SinglyLinkedList<int>();
+        list.AddLast(10);
+
+        list.AddLast(20);
+
+        Assert.False(list.IsEmpty);
+        Assert.Equal(2, list.Count);
+    }
+
+    [Fact]
+    public void AddFirstAndAddLast_MixedOperations_ShouldTrackCount()
+    {
+        var list = new SinglyLinkedList<int>();
+
+        list.AddFirst(1);
+        list.AddLast(2);
+        list.AddFirst(3);
+        list.AddLast(4);
+
+        Assert.False(list.IsEmpty);
+        Assert.Equal(4, list.Count);
+    }
+
+    [Fact]
     public void RemoveLast_OnEmptyList_ShouldThrow()
     {
         var list = new SinglyLinkedList<int>();
@@ -62,6 +122,19 @@ public class SinglyLinkedListTests
         Assert.Equal(7, list.RemoveLast());
         Assert.Equal(1, list.Count);
         Assert.Equal(7, list.RemoveLast());
+        Assert.True(list.IsEmpty);
+    }
+
+    [Fact]
+    public void RemoveLast_AfterListBecomesEmpty_ShouldAllowReuse()
+    {
+        var list = new SinglyLinkedList<int>();
+        list.AddLast(10);
+        list.RemoveLast();
+
+        list.AddFirst(20);
+
+        Assert.Equal(20, list.RemoveLast());
         Assert.True(list.IsEmpty);
     }
 
