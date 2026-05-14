@@ -96,4 +96,44 @@ public static class SortingAlgorithms
             k++;
         }
     }
+
+    public static void QuickSort<T>(T[] array) where T : IComparable<T>
+    {
+        QuickSortAux(array, 0, array.Length - 1);
+    }
+
+    private static void QuickSortAux<T>(T[] array, int left, int right) where T : IComparable<T>
+    {
+        if (left < right)
+        {
+            int pivotIndex = Partition(array, left, right);
+            QuickSortAux(array, left, pivotIndex - 1);
+            QuickSortAux(array, pivotIndex + 1, right);
+        }
+    }
+
+    private static int Partition<T>(T[] array, int left, int right) where T : IComparable<T>
+    {
+        int mid = left + (right - left) / 2;
+        int indexOfInsertion = left - 1;
+        int i = left;
+
+        (array[mid], array[right]) = (array[right], array[mid]);
+        T pivot = array[right];
+        
+        while (i < right)
+        {
+            if (array[i].CompareTo(pivot) < 0)
+            {
+                indexOfInsertion++;
+                (array[indexOfInsertion], array[i]) = (array[i], array[indexOfInsertion]);
+            }
+
+            i++;
+        }
+        
+        (array[indexOfInsertion + 1], array[right]) = (array[right], array[indexOfInsertion + 1]);
+
+        return indexOfInsertion + 1;
+    }
 }
