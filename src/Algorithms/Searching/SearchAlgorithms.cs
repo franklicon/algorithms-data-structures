@@ -2,7 +2,7 @@ namespace Algorithms.Searching;
 
 public static class SearchAlgorithms
 {
-    public static int BinarySearch(int[] array, int target)
+    public static int BinarySearch<T>(T[] array, T target) where T : IComparable<T>
     {
         int left = 0;
         int right = array.Length - 1;
@@ -10,11 +10,13 @@ public static class SearchAlgorithms
         while (left <= right)
         {
             int mid = left + (right - left) / 2;
-            if (array[mid] > target)
+            int cmp = array[mid].CompareTo(target);
+            
+            if (cmp > 0)
             {
                 right = mid - 1;
             }
-            else if (array[mid] < target)
+            else if (cmp < 0)
             {
                 left = mid + 1;
             }

@@ -113,4 +113,24 @@ public class SearchAlgorithmsTests
 
         Assert.Equal(1, index);
     }
+
+    [Fact]
+    public void BinarySearch_WithStrings_WhenTargetIsPresent_ShouldReturnCorrectIndex()
+    {
+        string[] array = ["apple", "banana", "cherry", "mango"];
+
+        int index = SearchAlgorithms.BinarySearch(array, "cherry");
+
+        Assert.Equal(2, index);
+    }
+
+    [Fact]
+    public void BinarySearch_WithStrings_WhenTargetIsAbsent_ShouldReturnNegativeOne()
+    {
+        string[] array = ["apple", "banana", "cherry", "mango"];
+
+        int index = SearchAlgorithms.BinarySearch(array, "grape");
+
+        Assert.Equal(-1, index);
+    }
 }
